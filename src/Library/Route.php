@@ -1,6 +1,6 @@
 <?php
 
-namespace Library;
+namespace IntMag\Library;
 
 class Route
 {
