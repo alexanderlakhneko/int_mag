@@ -4,5 +4,12 @@
     "type": "project",
     "license": "MIT",
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Controller\\": "src/Controller",
+            "Libary\\": "src/Library",
+            "Model\\": "src/Model"
+        }
+    }
 }
