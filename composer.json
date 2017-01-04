@@ -1,0 +1,8 @@
+{
+    "name": "alexander/intmag",
+    "description": "IntMag",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {}
+}
