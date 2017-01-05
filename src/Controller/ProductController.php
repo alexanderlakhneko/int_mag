@@ -5,8 +5,9 @@ namespace IntMag\Controller;
 
 class ProductController
 {
-    public function actionList()
+    public function listAction()
     {
+        echo 'one';
         return true;
     }
 }
