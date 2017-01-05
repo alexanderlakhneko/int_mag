@@ -58,11 +58,11 @@ class Router
         }
     }
     
-    public function getUri($routeName, array $params = array())
-    {
-        
-       // todo
-    }
+//    public function getUri($routeName, array $params = array())
+//    {
+//        
+//       // todo
+//    }
     
     public function redirect($to)
     {
