@@ -22,19 +22,22 @@ $request = new Request();
 $router = new Router(CONFIG_DIR . 'routes.php');
 
 
+try{
+    $router->match($request);
+    $route = $router->getCurrentRoute();
 
-$router->match($request);
-$route = $router->getCurrentRoute();
+    $controller = 'IntMag\\Controller\\' . ucfirst($route->controller) . 'Controller';
+    $action = $route->action . 'Action';
 
-$controller = 'IntMag\\Controller\\' . ucfirst($route->controller) . 'Controller';
-$action = $route->action . 'Action';
+    $controller = new $controller();
+    
+    $content = $controller->$action($request);
 
-$controller = new $controller();
-
-if (!method_exists($controller, $action)) {
-    throw new \Exception('Page not found', 404);
+    if (!method_exists($controller, $action)) {
+        throw new \Exception('Page not found', 404);
+    }
+} catch (\Exception $e) {
+    $content = $e->getMessage();
 }
-
-$content = $controller->$action($request);
 
 echo $content;

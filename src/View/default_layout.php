@@ -70,10 +70,10 @@
                                     </a>
                                 </li>
                                 
-                                    <li><a href="/user/login/"><i class="fa fa-lock"></i> Вход</a></li>
+                                    <li><a href="/user/login"><i class="fa fa-lock"></i> Вход</a></li>
                                 
-                                    <li><a href="/cabinet/"><i class="fa fa-user"></i> Аккаунт</a></li>
-                                    <li><a href="/user/logout/"><i class="fa fa-unlock"></i> Выход</a></li>
+                                    <li><a href="/cabinet"><i class="fa fa-user"></i> Аккаунт</a></li>
+                                    <li><a href="/user/logout"><i class="fa fa-unlock"></i> Выход</a></li>
                                 
                             </ul>
                         </div>
@@ -99,12 +99,12 @@
                                 <li><a href="/">Главная</a></li>
                                 <li class="dropdown"><a href="#">Магазин<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="/catalog/">Каталог товаров</a></li>
-                                        <li><a href="/cart/">Корзина</a></li>
+                                        <li><a href="/catalog">Каталог товаров</a></li>
+                                        <li><a href="/cart">Корзина</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/about/">О магазине</a></li>
-                                <li><a href="/contacts/">Контакты</a></li>
+                                <li><a href="/about">О магазине</a></li>
+                                <li><a href="/contacts">Контакты</a></li>
                             </ul>
                         </div>
                     </div>
@@ -114,6 +114,9 @@
 
     </header><!--/header-->
 
+    <div>
+        <?=$content ?>
+    </div>
 
 
     <div class="page-buffer"></div>
