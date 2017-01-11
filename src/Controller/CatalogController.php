@@ -3,12 +3,15 @@
 namespace IntMag\Controller;
 
 use IntMag\Library\Request;
+use IntMag\Library\Controller;
+use IntMag\Model\Product;
+use IntMag\Library\Pagination;
 
 /**
  * Контроллер CatalogController
  * Каталог товаров
  */
-class CatalogController
+class CatalogController extends Controller
 {
 
     /**
@@ -16,7 +19,8 @@ class CatalogController
      */
     public function indexAction()
     {
-        return 'all product';
+        $Products = new Product();
+        return $this->render('index.php', ['Products' => $Products]);
     }
 
     /**
@@ -24,12 +28,17 @@ class CatalogController
      */
     public function categoryAction(Request $request)
     {
-        $st = 1;
-        $id = $request->get('id');
-        if($request->get('st')){
-            $st = $request->get('st');
-        }
-        return 'category ' . $id . 'str = ' . $st ;
+        $Products = new Product();
+
+        $categoryId = $request->get('id');
+        $total = $Products->getTotalProductsInCategory($categoryId);
+        $page = $request->get('st');
+        $categoryProducts = $Products->getProductsListByCategory($categoryId, $page);
+        
+//        // Создаем объект Pagination - постраничная навигация
+         $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
+//
+        return $this->render('category.php', ['Products' => $Products, 'pagination' => $pagination, 'categoryId' => $categoryId, 'categoryProducts' => $categoryProducts]);
     }
 
 }

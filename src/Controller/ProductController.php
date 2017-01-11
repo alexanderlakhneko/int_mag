@@ -10,7 +10,7 @@ use IntMag\Library\Request;
  * Контроллер ProductController
  * Товар
  */
-class ProductController
+class ProductController 
 {
     /**
      * Action для страницы просмотра товара

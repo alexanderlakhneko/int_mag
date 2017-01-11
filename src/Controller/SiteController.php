@@ -5,13 +5,14 @@ namespace IntMag\Controller;
 
 use IntMag\Library\Controller;
 use IntMag\Library\Request;
-
+use IntMag\Model\Product;
 
 class SiteController extends Controller
 {
     public function indexAction(Request $request)
     {
-        return $this->render('index.php');
+        $Products = new Product();
+        return $this->render('index.php', ['Products' => $Products]);
     }
 
     public function contactAction()
@@ -21,6 +22,6 @@ class SiteController extends Controller
 
     public function aboutAction()
     {
-        return 'about';
+        return $this->render('about.php');
     }
 }

@@ -1,16 +1,3 @@
-<?php // Список категорий для левого меню
-
-use IntMag\Model\Category;
-use IntMag\Model\Product;
-
-$categories = Category::getCategoriesList();
-
-// Список последних товаров
-$latestProducts = Product::getLatestProducts(6);
-
-// Список товаров для слайдера
-$sliderProducts = Product::getRecommendedProducts(); ?>
-
 <section>
     <div class="container">
         <div class="row">
@@ -18,11 +5,11 @@ $sliderProducts = Product::getRecommendedProducts(); ?>
                 <div class="left-sidebar">
                     <h2>Каталог</h2>
                     <div class="panel-group category-products">
-                        <?php foreach ($categories as $categoryItem): ?>
+                        <?php foreach ($Products->getCategoriesList() as $categoryItem): ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a href="/category/<?php echo $categoryItem['id']; ?>">
+                                        <a href="/category/<?php echo $categoryItem['id']; ?>/page-1">
                                             <?php echo $categoryItem['name']; ?>
                                         </a>
                                     </h4>
@@ -37,12 +24,12 @@ $sliderProducts = Product::getRecommendedProducts(); ?>
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Последние товары</h2>
 
-                    <?php foreach ($latestProducts as $product): ?>
+                    <?php foreach ($Products->getLatestProducts(6) as $product): ?>
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="<?php echo Product::getImage($product['id']); ?>" alt="" />
+                                        <img src="<?php echo $Products->getImage($product['id']); ?>" alt="" />
                                         <h2>$<?php echo $product['price']; ?></h2>
                                         <p>
                                             <a href="/product/<?php echo $product['id']; ?>">
@@ -74,12 +61,12 @@ $sliderProducts = Product::getRecommendedProducts(); ?>
                          data-cycle-prev="#prev"
                          data-cycle-next="#next"
                     >
-                        <?php foreach ($sliderProducts as $sliderItem): ?>
+                        <?php foreach ($Products->getRecommendedProducts() as $sliderItem): ?>
                             <div class="item">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img src="<?php echo Product::getImage($sliderItem['id']); ?>" alt="" />
+                                            <img src="<?php echo $Products->getImage($sliderItem['id']); ?>" alt="" />
                                             <h2>$<?php echo $sliderItem['price']; ?></h2>
                                             <a href="/product/<?php echo $sliderItem['id']; ?>">
                                                 <?php echo $product['name']; ?>
