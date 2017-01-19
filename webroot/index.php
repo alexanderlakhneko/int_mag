@@ -5,10 +5,8 @@ use IntMag\Library\Request;
 use IntMag\Library\Session;
 use IntMag\Library\Config;
 use IntMag\Library\DbConnection;
-use IntMag\Library\Controller;
 use IntMag\Library\Container;
 use IntMag\Library\RepositoryManager;
-use IntMag\Library\Route;
 use IntMag\Controller\ErrorController;
 
 ini_set('display_errors',1);
@@ -25,26 +23,23 @@ define('LOG_DIR', ROOT . 'logs' . DS);
 
 require (VENDOR_DIR . 'autoload.php');
 
-
-
-
 try{
     Session::start();
     $config = new Config();
-
+    
     $request = new Request();
 
-    $router = new Router(CONFIG_DIR . 'routes.php');
-    $request = new Request();
     $pdo = (new DbConnection($config))->getPDO();
     $repositoryManager = (new RepositoryManager())->setPDO($pdo);
+
+    $router = new Router(CONFIG_DIR . 'routes.php');
 
     $container = new Container();
     $container->set('config', $config);
     $container->set('database_connection', $pdo);
     $container->set('repository_manager', $repositoryManager);
     $container->set('router', $router);
-    
+
     $router->match($request);
     $route = $router->getCurrentRoute();
 
@@ -52,21 +47,24 @@ try{
     $action = $route->action . 'Action';
 
     $controller = new $controller();
-//    $controller->setContainer($container);
+    $controller->setContainer($container);
     
     if (!method_exists($controller, $action)) {
         throw new \Exception('Page not found', 404);
     }
     
     $content = $controller->$action($request);
-    
+
 } catch (\Exception $e) {
     $controller = new ErrorController();
- //   $controller->setContainer($container);
+    $controller->setContainer($container);
     $content = $controller->errorAction($request, $e);
 }
 
 echo $content;
+
+
+
 
 
 

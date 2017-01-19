@@ -3,6 +3,8 @@
 namespace IntMag\Controller;
 
 use IntMag\Library\Request;
+use IntMag\Library\Controller;
+use IntMag\Model\Product;
 
 
 
@@ -10,7 +12,7 @@ use IntMag\Library\Request;
  * Контроллер ProductController
  * Товар
  */
-class ProductController 
+class ProductController extends Controller
 {
     /**
      * Action для страницы просмотра товара
@@ -18,7 +20,14 @@ class ProductController
      */
     public function showAction(Request $request)
     {
-        $id = $request->get('id');
-        return 'product ' . $id;
+        $products = $this->container->get('repository_manager')->getRepository('Product');
+        // Список категорий для левого меню
+        $categories = $products->getCategoriesList();
+
+        // Получаем инфомрацию о товаре
+        $product = $products->getProductById($request->get('id'));
+
+        // Подключаем вид
+        return $this->render('view.php', ['categories' => $categories, 'product' => $product, 'products' => $products]);
     }
 }

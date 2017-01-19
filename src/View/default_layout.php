@@ -1,3 +1,9 @@
+<?php
+use IntMag\Model\Cart;
+use IntMag\Model\User;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,15 +72,16 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="/cart">
                                         <i class="fa fa-shopping-cart"></i> Корзина
-                                        
+                                        (<span id="cart-count"><?php echo Cart::countItems(); ?></span>)
                                     </a>
                                 </li>
-                                
+                                <?php if (User::isGuest()): ?>
                                     <li><a href="/user/login"><i class="fa fa-lock"></i> Вход</a></li>
-                                
+                                    <li><a href="/user/register"><i class="fa fa-lock"></i> Регистрация</a></li>
+                                <?php else: ?>
                                     <li><a href="/cabinet"><i class="fa fa-user"></i> Аккаунт</a></li>
                                     <li><a href="/user/logout"><i class="fa fa-unlock"></i> Выход</a></li>
-                                
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -99,7 +106,7 @@
                                 <li><a href="/">Главная</a></li>
                                 <li class="dropdown"><a href="#">Магазин<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="/catalog">Все товары</a></li>
+                                        <li><a href="/catalog">Каталог товаров</a></li>
                                         <li><a href="/cart">Корзина</a></li>
                                     </ul>
                                 </li>
@@ -144,6 +151,17 @@
 <script src="/js/jquery.prettyPhoto.js"></script>
 <script src="/js/main.js"></script>
 
+<script>
+    $(document).ready(function(){
+        $(".add-to-cart").click(function () {
+            var id = $(this).attr("data-id");
+            $.post("/cart/addAjax/"+id, {}, function (data) {
+                $("#cart-count").html(data);
+            });
+            return false;
+        });
+    });
+</script>
 
 </body>
 </html>

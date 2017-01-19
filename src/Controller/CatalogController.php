@@ -19,7 +19,7 @@ class CatalogController extends Controller
      */
     public function indexAction()
     {
-        $Products = new Product();
+        $Products = $this->container->get('repository_manager')->getRepository('Product');
         return $this->render('index.php', ['Products' => $Products]);
     }
 
@@ -28,7 +28,7 @@ class CatalogController extends Controller
      */
     public function categoryAction(Request $request)
     {
-        $Products = new Product();
+        $Products = $this->container->get('repository_manager')->getRepository('Product');
 
         $categoryId = $request->get('id');
         $total = $Products->getTotalProductsInCategory($categoryId);

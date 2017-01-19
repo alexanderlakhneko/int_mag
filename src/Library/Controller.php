@@ -5,8 +5,8 @@ namespace IntMag\Library;
 abstract class Controller
 {
     protected $container;
-    
-    private static $layout = 'default_layout.php';
+
+    protected static $layout = 'default_layout.php';
     
     protected function render($view, array $args = array())
     {
@@ -25,7 +25,14 @@ abstract class Controller
 
         ob_start();
         require VIEW_DIR . self::$layout;
-
+        
         return ob_get_clean();
+    }
+    
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+
+        return $this;
     }
 }

@@ -5,19 +5,51 @@ namespace IntMag\Controller;
 
 use IntMag\Library\Controller;
 use IntMag\Library\Request;
-use IntMag\Model\Product;
+
 
 class SiteController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $Products = new Product();
+        $Products = $this->container->get('repository_manager')->getRepository('Product');
         return $this->render('index.php', ['Products' => $Products]);
     }
 
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return 'contact us';
+        // Переменные для формы
+        $userEmail = false;
+        $userText = false;
+        $result = false;
+
+        // Флаг ошибок
+        $errors = false;
+        
+        $user = $this->container->get('repository_manager')->getRepository('User');
+
+        // Обработка формы
+        if ($request->isPost()) {
+            // Если форма отправлена 
+            // Получаем данные из формы
+            $userEmail = $request->post('userEmail');
+            $userText = $request->post('userText');
+            
+            // Валидация полей
+            if (!$user->checkEmail($userEmail)) {
+                $errors[] = 'Неправильный email';
+            }
+
+            if ($errors == false) {
+                // Если ошибок нет
+                // Отправляем письмо администратору 
+                $adminEmail = 'php.admin@gmail.com';
+                $message = "Текст: {$userText}. От {$userEmail}";
+                $subject = 'Тема письма';
+                $result = mail($adminEmail, $subject, $message);
+                $result = true;
+            }
+        }
+        return $this->render('contact.php', ['userEmail' => $userEmail, 'userText' => $userText, 'result' => $result, 'errors' => $errors]);
     }
 
     public function aboutAction()
