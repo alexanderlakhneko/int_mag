@@ -7,7 +7,9 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "IntMag\\": "src/"
+            "Controller\\": "src/Controller/",
+            "Library\\": "src/Library/",
+            "Model\\": "src/Model/"
         }
     }
 }

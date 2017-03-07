@@ -1,6 +1,6 @@
 <?php
 
-namespace IntMag\Library;
+namespace Library;
 
 abstract class Session
 {

@@ -1,4 +1,4 @@
-<?php use IntMag\Model\Order; ?>
+<?php use Model\Order; ?>
 <section>
     <div class="container">
         <div class="row">

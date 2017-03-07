@@ -1,8 +1,8 @@
 <?php
 
-namespace IntMag\Model;
+namespace Model;
 
-use IntMag\Library\EntityRepository;
+use Library\EntityRepository;
 
 /**
  * Класс Product - модель для работы с товарами
@@ -431,10 +431,10 @@ class Product extends EntityRepository
     }
 
     /**
-     * Возвращает категорию с указанным id
-     * @param integer $id <p>id категории</p>
-     * @return array <p>Массив с информацией о категории</p>
-     */
+* Возвращает категорию с указанным id
+* @param integer $id <p>id категории</p>
+* @return array <p>Массив с информацией о категории</p>
+*/
     public function getCategoryById($id)
     {
         // Текст запроса к БД

@@ -1,13 +1,13 @@
 <?php
 
-use IntMag\Library\Router;
-use IntMag\Library\Request;
-use IntMag\Library\Session;
-use IntMag\Library\Config;
-use IntMag\Library\DbConnection;
-use IntMag\Library\Container;
-use IntMag\Library\RepositoryManager;
-use IntMag\Controller\ErrorController;
+use Library\Router;
+use Library\Request;
+use Library\Session;
+use Library\Config;
+use Library\DbConnection;
+use Library\Container;
+use Library\RepositoryManager;
+use Controller\ErrorController;
 
 ini_set('display_errors',1);
 error_reporting(E_ALL);
@@ -41,9 +41,11 @@ try{
     $container->set('router', $router);
 
     $router->match($request);
+
+
     $route = $router->getCurrentRoute();
 
-    $controller = 'IntMag\\Controller\\' . ucfirst($route->controller) . 'Controller';
+    $controller = 'Controller\\' . ucfirst($route->controller) . 'Controller';
     $action = $route->action . 'Action';
 
     $controller = new $controller();
@@ -56,9 +58,7 @@ try{
     $content = $controller->$action($request);
 
 } catch (\Exception $e) {
-    $controller = new ErrorController();
-    $controller->setContainer($container);
-    $content = $controller->errorAction($request, $e);
+    echo $e->getMessage();
 }
 
 echo $content;

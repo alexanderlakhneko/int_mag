@@ -1,6 +1,6 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
 /**
  * Контроллер AdminController

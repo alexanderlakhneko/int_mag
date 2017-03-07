@@ -1,13 +1,13 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
-use IntMag\Library\Request;
-use IntMag\Model\Cart;
-use IntMag\Model\Product;
-use IntMag\Library\Controller;
-use IntMag\Model\User;
-use IntMag\Model\Order;
+use Library\Request;
+use Model\Cart;
+use Model\Product;
+use Library\Controller;
+use Model\User;
+use Model\Order;
 
 
 /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
-use IntMag\Model\User;
-use IntMag\Library\Controller;
+use Model\User;
+use Library\Controller;
 
 /**
  * Абстрактный класс AdminBase содержит общую логику для контроллеров, которые 

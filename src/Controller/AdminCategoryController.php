@@ -1,9 +1,9 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
-use IntMag\Library\Request;
-use IntMag\Model\Product;
+use Library\Request;
+use Model\Product;
 /**
  * Контроллер AdminCategoryController
  * Управление категориями товаров в админпанели

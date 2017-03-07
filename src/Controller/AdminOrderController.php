@@ -1,10 +1,10 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
-use IntMag\Library\Request;
-use IntMag\Model\Order;
-use IntMag\Model\Product;
+use Library\Request;
+use Model\Order;
+use Model\Product;
 /**
  * Контроллер AdminOrderController
  * Управление заказами в админпанели

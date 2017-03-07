@@ -1,6 +1,6 @@
 <?php
-use IntMag\Model\Cart;
-use IntMag\Model\User;
+use Model\Cart;
+use Model\User;
 
 ?>
 

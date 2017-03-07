@@ -1,9 +1,9 @@
 <?php
 
-namespace IntMag\Model;
+namespace Model;
 
-use IntMag\Library\EntityRepository;
-use IntMag\Library\Session;
+use Library\EntityRepository;
+use Library\Session;
 
 /**
  * Класс User - модель для работы с пользователями

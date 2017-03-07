@@ -1,10 +1,10 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
-use IntMag\Library\Request;
-use IntMag\Library\Controller;
-use IntMag\Model\Product;
+use Library\Request;
+use Library\Controller;
+use Model\Product;
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-use IntMag\Library\Route;
+use Library\Route;
 
 return  array(
     // site routes

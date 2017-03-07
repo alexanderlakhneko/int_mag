@@ -1,10 +1,10 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
 
-use IntMag\Library\Controller;
-use IntMag\Library\Request;
+use Library\Controller;
+use Library\Request;
 
 
 class SiteController extends Controller

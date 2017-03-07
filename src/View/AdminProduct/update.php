@@ -1,4 +1,3 @@
-<?php use IntMag\Model\Product; ?>
 <section>
     <div class="container">
         <div class="row">

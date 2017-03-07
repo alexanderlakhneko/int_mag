@@ -1,6 +1,6 @@
 <?php
 
-namespace IntMag\Library;
+namespace Library;
 
 class RepositoryManager
 {
@@ -18,7 +18,7 @@ class RepositoryManager
     public function getRepository($entity) // 'Product' => ProductRepository
     {
         if (empty($this->repositories[$entity])) {
-            $repository = "\\IntMag\\Model\\{$entity}";
+            $repository = "\\Model\\{$entity}";
             // todo: create specific exception if file not found
             $repository = new $repository();
             $repository->setPDO($this->pdo);

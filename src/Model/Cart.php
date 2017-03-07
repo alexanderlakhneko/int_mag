@@ -1,6 +1,6 @@
 <?php
-namespace IntMag\Model;
-use IntMag\Library\Session;
+namespace Model;
+use Library\Session;
 
 /**
  * Класс Cart

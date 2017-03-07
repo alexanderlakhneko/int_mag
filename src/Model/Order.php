@@ -1,8 +1,8 @@
 <?php
 
-namespace IntMag\Model;
+namespace Model;
 
-use IntMag\Library\EntityRepository;
+use Library\EntityRepository;
 
 /**
  * Класс Order - модель для работы с заказами

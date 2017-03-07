@@ -1,10 +1,10 @@
 <?php
 
-namespace IntMag\Controller;
+namespace Controller;
 
-use IntMag\Library\Session;
-use IntMag\Library\Controller;
-use IntMag\Library\Request;
+use Library\Session;
+use Library\Controller;
+use Library\Request;
 
 /**
  * Контроллер UserController
