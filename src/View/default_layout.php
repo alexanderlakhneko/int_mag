@@ -1,7 +1,6 @@
 <?php
 use Model\Cart;
 use Model\User;
-
 ?>
 
 <!DOCTYPE html>
@@ -33,13 +32,11 @@ use Model\User;
 
 <body>
 <div class="page-wrapper">
-
-
     <header id="header"><!--header-->
         <div class="header_top"><!--header_top-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
                                 <li><a href="#"><i class="fa fa-phone"></i> +38 063 116 07 50</a></li>
@@ -47,14 +44,21 @@ use Model\User;
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
+                    <div class="col-sm-4">
+                        <form action="/search" method="post"
+                              class="navbar-form navbar-right" role="search">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                        <input type="text" autocomplete="off" id="search" data-toggle="dropdown" class="form-control"
+                                               placeholder="поиск" name="search"> </input>
+                                        <ul id="resSearch" class="dropdown-menu" >
+                                        </ul>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
+
                 </div>
             </div>
         </div><!--/header_top-->
@@ -67,7 +71,7 @@ use Model\User;
                             <a href="/"><img src="/images/home/logo.png" alt="" /></a>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="/cart">
@@ -150,18 +154,6 @@ use Model\User;
 <script src="/js/price-range.js"></script>
 <script src="/js/jquery.prettyPhoto.js"></script>
 <script src="/js/main.js"></script>
-
-<script>
-    $(document).ready(function(){
-        $(".add-to-cart").click(function () {
-            var id = $(this).attr("data-id");
-            $.post("/cart/addAjax/"+id, {}, function (data) {
-                $("#cart-count").html(data);
-            });
-            return false;
-        });
-    });
-</script>
 
 </body>
 </html>

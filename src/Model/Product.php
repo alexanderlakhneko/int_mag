@@ -493,4 +493,35 @@ class Product extends EntityRepository
         return $result->execute();
     }
 
+
+    public function getProductsSearch($productname)
+    {
+        $tags = array();
+
+        if($productname != ''){
+            $sql = "SELECT `name`, `id` FROM product WHERE `name` LIKE ?";
+
+            $result = $this->pdo->prepare($sql);
+
+
+            // Указываем, что хотим получить данные в виде массива
+            $result->setFetchMode(\PDO::FETCH_ASSOC);
+
+            // Выполнение коменды
+            $result->execute(array("%$productname%"));
+
+
+            $i = 0;
+
+            while ($row = $result->fetch()) {
+                $tags[$i]['name'] = $row['name'];
+                $tags[$i]['id'] = $row['id'];
+
+                $i++;
+            }
+        }
+
+        return $tags;
+    }
+
 }

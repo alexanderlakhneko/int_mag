@@ -58,7 +58,8 @@ try{
     $content = $controller->$action($request);
 
 } catch (\Exception $e) {
-    echo $e->getMessage();
+    $content = $e->getMessage();
+
 }
 
 echo $content;

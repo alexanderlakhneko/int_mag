@@ -26,6 +26,9 @@ return  array(
     // О магазине
     'contacts' => new Route('/contacts', 'Site', 'contact'),
     'about' => new Route('/about', 'Site', 'about'),
+    //Панель поиска
+    'Search' => new Route('/searchShort', 'Product', 'search' ),
+    'SearchList' => new Route('/search', 'Product', 'searchList' ),
     // Главная страница
     'default' => new Route('/', 'Site', 'index'),
     'index' => new Route('/index.php', 'Site', 'index'),

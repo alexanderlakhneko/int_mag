@@ -30,4 +30,25 @@ class ProductController extends Controller
         // Подключаем вид
         return $this->render('view.php', ['categories' => $categories, 'product' => $product, 'products' => $products]);
     }
+
+    public function searchAction(Request $request)
+    {
+        $products = $this->container->get('repository_manager')->getRepository('Product');
+
+        $product = $request->post('search');
+        $result = $products->getProductsSearch($product);
+
+        include VIEW_DIR . 'Product' . DS . 'Show.php';
+    }
+
+    public function searchListAction(Request $request)
+    {
+        $products = $this->container->get('repository_manager')->getRepository('Product');
+
+        $product = $request->post('search');
+        $result = $products->getProductsSearch($product);
+
+        // Подключаем вид
+        return $this->render('ShowList.php', ['result' => $result]);
+    }
 }

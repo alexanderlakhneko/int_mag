@@ -47,3 +47,36 @@ $(document).ready(function () {
         }
     });
 });
+
+
+$(function(){
+    $("#search").keyup(function(e){
+        var search = $("#search").val();
+        $.ajax({
+            type: "POST",
+            url: "/searchShort",
+            data: {"search": search},
+            cache: false,
+            success: function(response){
+                if(response == ''){
+                    $("#resSearch").hide()
+                }
+                if(response != ''){
+                    $("#resSearch").show().html(response);
+                }
+            }
+        });
+        return false;
+    });
+});
+
+
+$(document).ready(function(){
+    $(".add-to-cart").click(function () {
+        var id = $(this).attr("data-id");
+        $.post("/cart/addAjax/"+id, {}, function (data) {
+            $("#cart-count").html(data);
+        });
+        return false;
+    });
+});
