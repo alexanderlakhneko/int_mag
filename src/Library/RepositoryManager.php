@@ -20,7 +20,7 @@ class RepositoryManager
         if (empty($this->repositories[$entity])) {
             $repository = "\\Model\\{$entity}";
             // todo: create specific exception if file not found
-            $repository = new $repository();
+            $repository = new $repository;
             $repository->setPDO($this->pdo);
             $this->repositories[$entity] = $repository;
         }

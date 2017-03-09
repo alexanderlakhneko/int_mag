@@ -11,7 +11,7 @@ abstract class Controller
     protected function render($view, array $args = array())
     {
         extract($args);
-        $classname = str_replace(['Controller', 'IntMag', '\\'], ['', '', DS], get_class($this));
+        $classname = str_replace(['Controller', '\\'], ['', DS], get_class($this));
 
         $classname = trim($classname, DS);
 
@@ -19,9 +19,18 @@ abstract class Controller
         if (!file_exists($file)) {
             throw new \Exception("Template {$file} not found");
         }
+
+        
         ob_start();
         require VIEW_DIR . $classname . DS . $view;
+
         $content = ob_get_clean();
+
+        $cart = $this->container->get('repository_manager')->getRepository('Cart');
+        $countItems = $cart->countItems();
+
+        $User = $this->container->get('repository_manager')->getRepository('User');
+        $isGuest = $User->isGuest();
 
         ob_start();
         require VIEW_DIR . self::$layout;

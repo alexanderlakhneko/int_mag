@@ -57,8 +57,48 @@
                         </div>
                     </div>
                 </div><!--/product-details-->
+                <h3> Отзывов: <span class="badge"><?= $comment['count']; ?></span></h3>
+                <?php if ($user) : ?>
+                    <form method="post" id="comment_form" action="">
+                        <input type='hidden' id='id_news' value='<?= $product['id'] ?>'>
+                        <div class="form-group">
+                    <textarea rows="3" placeholder="Оставить отзыв...." name="comment"
+                              class="form-control"></textarea>
+                        </div>
 
-            </div>
+                        <button type="submit" name="submit" class="btn btn-success">Добавить коммент
+                        </button>
+                        <button type="reset" class="btn btn-danger">Отмена</button>
+
+                    </form>
+                    <br>
+                <?php else : ?>
+                    <div style="margin-bottom: 50px;"><a href="/user/login">Войдите</a>,чтобы оставить комментарий</div>
+                <?php endif; ?>
+                <?php array_pop($comment);?>
+                <?php foreach ($comment as $one_com): ?>
+                <div class='panel panel-warning'><div class='panel-heading'>
+                        <h3 class='panel-title'>Name: <a><?php echo $one_com['name'] ?></a> Time: <?php echo $one_com['date_time'] ?> </h3>
+                    </div>
+                    <div class='panel-body'><?php echo $one_com['comment'] ?></div>
+                            </div>
+                <?php endforeach;?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
         </div>
     </div>
 </section>

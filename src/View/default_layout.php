@@ -1,8 +1,3 @@
-<?php
-use Model\Cart;
-use Model\User;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,55 +26,47 @@ use Model\User;
 </head><!--/head-->
 
 <body>
-<div class="page-wrapper">
-    <header id="header"><!--header-->
-        <div class="header_top"><!--header_top-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +38 063 116 07 50</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> alexanderlakhneko@gmail.com</a></li>
-                            </ul>
+    <div class="page-wrapper">
+        <header id="header"><!--header-->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">My Shop</a>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <form action="/search" method="post"
-                              class="navbar-form navbar-right" role="search">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">alexanderlakhneko@gmail.com</a></li>
+                            <li><a href="#">+38 063 116 07 50</a></li>
+                        </ul>
+                        <form action="/search" method="post" class="navbar-form navbar-right" role="search">
                             <div class="form-group">
                                 <div class="btn-group">
-                                        <input type="text" autocomplete="off" id="search" data-toggle="dropdown" class="form-control"
-                                               placeholder="поиск" name="search"> </input>
+                                    <input type="text" autocomplete="off" id="search" data-toggle="dropdown" class="form-control" placeholder="поиск" name="search"> </input>
                                         <ul id="resSearch" class="dropdown-menu" >
                                         </ul>
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                     </div>
-
-
                 </div>
-            </div>
-        </div><!--/header_top-->
-
-        <div class="header-middle"><!--header-middle-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a href="/"><img src="/images/home/logo.png" alt="" /></a>
+            </nav>
+            <div class="header-middle"><!--header-middle-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="logo pull-left">
+                                <a href="/"><img src="/images/home/logo.png" alt="" /></a>
+                            </div>
                         </div>
-                    </div>
-
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="/cart">
                                         <i class="fa fa-shopping-cart"></i> Корзина
-                                        (<span id="cart-count"><?php echo Cart::countItems(); ?></span>)
+                                        (<span id="cart-count"><?php echo $countItems; ?></span>)
                                     </a>
                                 </li>
-                                <?php if (User::isGuest()): ?>
+                                <?php if ($isGuest): ?>
                                     <li><a href="/user/login"><i class="fa fa-lock"></i> Вход</a></li>
                                     <li><a href="/user/register"><i class="fa fa-lock"></i> Регистрация</a></li>
                                 <?php else: ?>
@@ -92,7 +79,6 @@ use Model\User;
                 </div>
             </div>
         </div><!--/header-middle-->
-
         <div class="header-bottom"><!--header-bottom-->
             <div class="container">
                 <div class="row">
@@ -129,11 +115,10 @@ use Model\User;
         <?=$content ?>
     </div>
 
-
     <div class="page-buffer"></div>
 </div>
 
-<footer id="footer" class="page-footer"><!--Footer-->
+<footer id="footer" class="page-footer "><!--Footer-->
     <div class="footer-bottom">
         <div class="container">
             <div class="row">

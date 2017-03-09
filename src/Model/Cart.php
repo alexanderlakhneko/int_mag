@@ -1,12 +1,13 @@
 <?php
 namespace Model;
 use Library\Session;
+use Library\EntityRepository;
 
 /**
  * Класс Cart
  * Компонент для работы корзиной
  */
-class Cart
+class Cart extends EntityRepository
 {
 
     /**
