@@ -47,4 +47,18 @@ class Comment extends EntityRepository
 
         return $result;
     }
+
+    public function Show($comment)
+    {
+        array_pop($comment);
+        $res = '<br>';
+        foreach ($comment as $one_com)
+        {
+            $res .= "<div class='panel panel-warning' id='comments'><div class='panel-heading'>";
+            $res .= "<h3 class='panel-title'>Name: <a>" . $one_com['name'] . "</a> Time:" . $one_com['date_time'] . "</h3></div>";
+            $res .= "<div class='panel-body'>" . $one_com['comment'] . "</div></div>";
+        }
+        return $res;
+    }
+    
 }

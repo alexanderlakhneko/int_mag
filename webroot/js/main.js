@@ -80,3 +80,28 @@ $(document).ready(function(){
         return false;
     });
 });
+
+$(document).ready(function(){
+    $(document).on("click", "#add_comment", function(){
+        var form = $("form[name='form']");
+        form.css("display", "block" );
+        $("#add_comment").remove();
+    })
+
+    $(document).on("click", "#add_comments", function () {
+            var id_product = $('#id_product').val();
+            var comment = $('#text_comment').val();
+
+            $.post("/product/comments", {comment: comment, id_product: id_product}
+            ).done(function(data) {
+                var $cnt = parseInt($('.badge').text());
+                $('.badge').html($cnt + 1);
+                var data = $(data);
+
+                $('.panel').remove();
+                $('#comment_form textarea').val('');
+
+                $('#comment_form').after(data);
+            });
+    })
+});

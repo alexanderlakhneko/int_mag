@@ -42,8 +42,10 @@ class ProductController extends Controller
             Router::redirect("/product/$id");
         }
 
+        $com = $comments->show($comment);
+
         // Подключаем вид
-        return $this->render('view.php', ['categories' => $categories, 'product' => $product, 'products' => $products, 'comment' => $comment, 'user' => $user ]);
+        return $this->render('view.php', ['categories' => $categories, 'product' => $product, 'products' => $products, 'comment' => $comment, 'user' => $user, 'com'  => $com]);
     }
 
     public function searchAction(Request $request)
@@ -66,4 +68,20 @@ class ProductController extends Controller
         // Подключаем вид
         return $this->render('ShowList.php', ['result' => $result]);
     }
+
+    public function commentsAction(Request $request)
+    {
+        $comments = $this->container->get('repository_manager')->getRepository('comment');
+
+        if( $request->post('comment')) {
+            $id_product = $request->post('id_product');
+            $data['comments'] = $comments->addComment(Session::get('user'), $id_product, $request->post('comment'));
+            $comment = $comments->show($data['comments']);
+            return $comment;
+
+        }
+
+    }
+
+
 }

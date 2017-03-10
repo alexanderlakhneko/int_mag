@@ -23,6 +23,8 @@ return  array(
     'user_logout' => new Route('/user/logout', 'User', 'logout'),
     'cabinet_edit' => new Route('/cabinet/edit', 'Cabinet', 'edit'),
     'cabinet' => new Route('/cabinet', 'Cabinet', 'index'),
+    // Комментарии:
+    'comments' => new Route('/product/comments', 'Product', 'comments'),
     // О магазине
     'contacts' => new Route('/contacts', 'Site', 'contact'),
     'about' => new Route('/about', 'Site', 'about'),
